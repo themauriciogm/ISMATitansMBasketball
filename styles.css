@@ -262,6 +262,11 @@ body {
     object-fit: contain;
 }
 
+.today-game-card {
+    border: 3px solid #FFD700 !important;
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.5) !important;
+}
+
 .game-type-badge {
     display: inline-block;
     padding: 0.3rem 0.8rem;
@@ -426,6 +431,12 @@ body {
 .status-away {
     background: rgba(255, 255, 255, 0.1);
     color: var(--text-muted);
+}
+
+.today-schedule-item {
+    border-left: 4px solid #FFD700 !important;
+    background: rgba(255, 215, 0, 0.1) !important;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3) !important;
 }
 
 /* Footer */

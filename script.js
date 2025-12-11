@@ -442,8 +442,10 @@ function renderSchedule() {
             matchupHTML = `${opponentLogoHTML} <span>${game.opponent} vs. IMSA</span> ${imsaLogoHTML}`;
         }
 
+        const todayClass = isToday ? ' today-schedule-item' : '';
+
         return `
-        <div class="schedule-item game-item" data-game-index="${index}" style="animation: fadeUp 0.5s ease backwards ${index * 0.1}s; cursor: pointer;">
+        <div class="schedule-item game-item${todayClass}" data-game-index="${index}" style="animation: fadeUp 0.5s ease backwards ${index * 0.1}s; cursor: pointer;">
             <div class="${dateClass}">${game.date}</div>
             <div class="match-opponent">
                 ${matchupHTML}
@@ -466,8 +468,11 @@ function renderSchedule() {
 // Render Home Games Preview
 function renderHomeGames() {
     const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+
     const upcomingHomeGames = schedule.filter(g => {
         const gameDate = new Date(g.date);
+        gameDate.setHours(0, 0, 0, 0);
         return g.location === 'Home' && gameDate >= currentDate;
     });
 
@@ -476,14 +481,21 @@ function renderHomeGames() {
             const gameIndex = schedule.indexOf(game);
             const isNext = index === 0;
 
+            const gameDate = new Date(game.date);
+            gameDate.setHours(0, 0, 0, 0);
+            const isToday = gameDate.getTime() === currentDate.getTime();
+
             const opponentLogo = getOpponentLogo(game.opponent);
             const opponentLogoHTML = opponentLogo ? `<img src="images/logos/${opponentLogo}" alt="${game.opponent}" class="home-game-logo">` : '';
             const imsaLogoHTML = '<img src="images/logos/imsa.png" alt="IMSA" class="home-game-logo">';
 
+            const todayClass = isToday ? ' today-game-card' : '';
+
             return `
-            <div class="card game-card ${isNext ? 'next-game-card' : 'upcoming-game-card'}" data-game-index="${gameIndex}" style="animation: fadeUp 0.5s ease backwards ${index * 0.1}s; cursor: pointer;">
+            <div class="card game-card ${isNext ? 'next-game-card' : 'upcoming-game-card'}${todayClass}" data-game-index="${gameIndex}" style="animation: fadeUp 0.5s ease backwards ${index * 0.1}s; cursor: pointer;">
                 <div class="card-content" style="padding: 2rem; text-align: center;">
                     ${isNext ? '<p class="card-info" style="color:var(--accent); text-transform:uppercase; font-weight: 700;">Next Home Game</p>' : ''}
+                    ${isToday ? '<p class="card-info" style="color:#FFD700; text-transform:uppercase; font-weight: 700; font-size: 1.2rem;">TODAY</p>' : ''}
                     <div class="home-game-matchup">
                         ${imsaLogoHTML}
                         <h3 class="card-title" style="font-size: ${isNext ? '2rem' : '1.5rem'}; margin: 0 1rem;">IMSA vs. ${game.opponent}</h3>
