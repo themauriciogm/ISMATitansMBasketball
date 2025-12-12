@@ -10,7 +10,7 @@ const roster = [
     { name: "Lota Onwuameze", number: "40", pos: "F", height: "6'4\"", year: "Junior" },
     { name: "Mauricio Gubert", number: "5", pos: "G", height: "6'0\"", year: "Sophomore" },
     { name: "Marshall Flynn-Mitchell", number: "3", pos: "PG", height: "5'8\"", year: "Sophomore" },
-    { name: "Merrick Trone", number: "5", pos: "G", height: "5'5\"", year: "Sophomore" },
+    { name: "Merrick Trone", number: "2", pos: "G", height: "5'5\"", year: "Sophomore" },
     { name: "Adam Albdairi", number: "12", pos: "G", height: "6'2\"", year: "Sophomore" },
     { name: "Emmanuel Igbinosa", number: "22", pos: "F", height: "6'3\"", year: "Sophomore" },
     { name: "Ayden Stahl", number: "32", pos: "G", height: "6'1\"", year: "Sophomore" },
@@ -108,15 +108,16 @@ const schedule = [
         ],
         record: "0-1"
     },
-    {
-        date: "Dec 11, 2025",
+    {date: "Dec 11, 2025",
         opponent: "Serena",
         location: "Home",
         time: "7:00 PM",
-        result: "Upcoming",
+        result: "L 67-52",
         gameType: "Conference",
-        history: [],
-        record: "N/A"
+        history: [
+            { date: "Dec 11, 2025", result: "L 67-52", location: "Home" }
+        ],
+        record: "0-1"
     },
     {
         date: "Dec 13, 2025",
@@ -683,3 +684,4 @@ function scheduleNextRefresh() {
         scheduleNextRefresh();
     }, timeUntilMidnight);
 }
+
